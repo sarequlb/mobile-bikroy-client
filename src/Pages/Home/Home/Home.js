@@ -12,8 +12,8 @@ const Home = () => {
             <MobileBanner></MobileBanner>
             <Categories></Categories>
             <SellInfo></SellInfo>
-            {/* <CustomerReviews></CustomerReviews>
-            <AddReview></AddReview>
+            <CustomerReviews></CustomerReviews>
+            {/* <AddReview></AddReview>
             <Contact></Contact> */}
         </div>
     );
