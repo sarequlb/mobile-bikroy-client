@@ -10,11 +10,11 @@ const Home = () => {
     return (
         <div>
             <MobileBanner></MobileBanner>
-            <Categories></Categories>
+            {/* <Categories></Categories>
             <SellInfo></SellInfo>
             <CustomerReviews></CustomerReviews>
             <AddReview></AddReview>
-            <Contact></Contact>
+            <Contact></Contact> */}
         </div>
     );
 };
