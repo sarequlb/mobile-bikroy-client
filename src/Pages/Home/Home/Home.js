@@ -10,8 +10,8 @@ const Home = () => {
     return (
         <div>
             <MobileBanner></MobileBanner>
-            {/* <Categories></Categories>
-            <SellInfo></SellInfo>
+            <Categories></Categories>
+            {/* <SellInfo></SellInfo>
             <CustomerReviews></CustomerReviews>
             <AddReview></AddReview>
             <Contact></Contact> */}
