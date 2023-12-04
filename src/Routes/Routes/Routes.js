@@ -4,6 +4,11 @@ import Main from "../../Layout/Main/Main";
 import SignIn from "../../Pages/SignIn/SignIn";
 import Home from "../../Pages/Home/Home/Home";
 import SignUp from "../../Pages/SignUp/SignUp";
+import DashBoardLayout from "../../Layout/DashBoardLayout/DashBoardLayout";
+import AddProducts from "../../Pages/sellerPages/AddProducts/AddProducts";
+import AllUsers from "../../Pages/AdminPages/AllUsers/AllUsers";
+import AdminRoute from "../AdminRoute/AdminRoute";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
     {
@@ -12,7 +17,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <Home></Home>
+                element: <PrivateRoute><Home></Home></PrivateRoute>
             },
             {
                 path: '/signin',
@@ -24,6 +29,20 @@ export const router = createBrowserRouter([
             },
         ]
 
+    },
+    {
+        path:'/dashboard',
+        element:<DashBoardLayout></DashBoardLayout>,
+        children:[
+            {
+                path: '/dashboard/addProducts',
+                element: <AddProducts></AddProducts>
+            },
+            {
+                path: '/dashboard/allUsers',
+                element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
+            },
+        ]
     }
 
 ])

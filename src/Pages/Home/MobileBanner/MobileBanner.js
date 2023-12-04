@@ -27,7 +27,7 @@ const MobileBanner = () => {
             <div className="carousel w-full rounded">
                 {
                     MobileItems.map(mobilItem =>
-                        <div id={`item${mobilItem.id}`} className="carousel-item w-full" >
+                        <div key={mobilItem.id} id={`item${mobilItem.id}`} className="carousel-item w-full" >
                             <img src={mobilItem.image} className="w-full" alt='' />
                         </div>
                     )
