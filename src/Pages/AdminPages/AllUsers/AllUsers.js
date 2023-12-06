@@ -1,16 +1,20 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useQuery } from 'react-query';
 import UseAdmin from '../../../hooks/UseAdmin';
 import { AuthContext } from '../../../contexts/AuthProvider';
+import ConfirmationModal from '../../../SharedPage/ConfirmationModal/ConfirmationModal';
 
 const AllUsers = () => {
 
-    const {user} = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
+    const [deletingUser, setDeletingUser] = useState(null)
+    const [verifySeller, setVerifySeller] = useState(null)
+    const [makeAdmin, setMakeAdmin] = useState(null)
 
-    const [isAdmin,isAdminLoading] = UseAdmin(user?.email)
+    const [isAdmin, isAdminLoading] = UseAdmin(user?.email)
 
-    const { data: allUsers=[], refetch,isLoading } = useQuery({
+    const { data: allUsers = [], refetch, isLoading } = useQuery({
         queryKey: ['allUsers'],
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/allUsers')
@@ -18,50 +22,85 @@ const AllUsers = () => {
             return data;
         }
     })
-    if(isAdminLoading){
+
+    const closeModal = () => {
+        setDeletingUser(null)
+    }
+    const cancelModal = () => {
+        setVerifySeller(null)
+    }
+    const modalCancel = () => {
+        setMakeAdmin(null)
+    }
+    if (isAdminLoading) {
         <h1>loading.........</h1>
     }
 
-    if(isLoading){
+    if (isLoading) {
         <h1>loading..........</h1>
     }
-    const handleMakeAdmin = (id) =>{
-        fetch(`http://localhost:5000/allUsers/${id}`,{
-            method:'PUT',
+
+    //make admin
+
+    const handleMakeAdmin = (id) => {
+        fetch(`http://localhost:5000/allUsers/${id}`, {
+            method: 'PUT',
             headers: {
 
             }
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-            if(data.modifiedCount < 0){
-                toast.success('Make Admin Successfully')
-                refetch()
-            }
-        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.modifiedCount > 0) {
+                    toast.success('Make Admin Successfully')
+                    refetch()
+                }
+            })
     }
-    const handleDeleteAdmin = (id) =>{
+
+    //dellete user
+
+    const handleDeleteUser = (id) => {
         console.log(id)
-        fetch(`http://localhost:5000/allUsers/${id}`,{
-            method:'DELETE',
+        fetch(`http://localhost:5000/allUsers/${id}`, {
+            method: 'DELETE',
             headers: {
 
             }
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-            if(data.deletedCount < 0){
-                toast.success('Deleted Successfully')
-                refetch()
-            }
-        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.deletedCount > 0) {
+                    toast.success('Deleted Successfully')
+                    refetch()
+                }
+            })
     }
 
-    console.log(allUsers)
+    ///verify admin
+
+    const handleVerifySeller = (id) => {
+        console.log(id)
+        fetch(`http://localhost:5000/allUsers/seller/${id}`, {
+            method: 'PUT',
+            headers: {
+
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.modifiedCount > 0) {
+                    toast.success('Make verified Successfully')
+                    refetch()
+                }
+            })
+    }
     return (
         <div>
+            <h1 className='text-2xl my-10 font-bold text-center'>All Users</h1>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
@@ -73,25 +112,64 @@ const AllUsers = () => {
                             <th>Account Type</th>
                             <th>Admin</th>
                             <th>Delete</th>
+                            <th>Seller Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            allUsers.map((allUser,i) => <tr >
-                                <th>{i+1}</th>
+                            allUsers.map((allUser, i) => <tr >
+                                <th>{i + 1}</th>
                                 <td>{allUser.name}</td>
                                 <td>{allUser.email}</td>
                                 <td>{allUser.accountType}</td>
                                 {
-                                   allUser?.role !== 'admin' ?<td><button onClick={() => handleMakeAdmin(allUser._id)} className="btn btn-xs btn-primary">Make Admin</button></td>:<p>admin</p>
+                                    allUser?.role !== 'admin' ? <td><label onClick={() => setMakeAdmin(allUser._id)} htmlFor="confirmation-modal" className="btn btn-xs btn-primary">Make Admin</label></td> : <td><p className='font-bold'>Admin</p></td>
                                 }
-                                <td><button onClick={() => handleDeleteAdmin(allUser._id)} className="btn btn-xs btn-error">Delete User</button></td>
+                                <label onClick={() => setDeletingUser(allUser._id)} htmlFor="confirmation-modal" className="btn btn-xs btn-error">Delete</label>
+                                {allUser?.verify !== true ?
+                                     <td><label disabled={allUser?.accountType === 'Buyer'}  onClick={() => setVerifySeller(allUser._id)} htmlFor="confirmation-modal" className="btn btn-xs btn-accent">Verify Seller</label></td>: <td><p className='font-bold'>verified</p></td>
+                                }
 
                             </tr>)
                         }
+
                     </tbody>
                 </table>
             </div>
+
+            {
+                deletingUser && <ConfirmationModal
+                    title={`Are you sure you want to delete?`}
+                    closeModal={closeModal}
+                    successAction={handleDeleteUser}
+                    modalData={deletingUser}
+                    buttonName='Delete'
+                >
+
+                </ConfirmationModal>
+            }
+            {
+                verifySeller && <ConfirmationModal
+                    title={`Are you sure you want to verify?`}
+                    closeModal={cancelModal}
+                    successAction={handleVerifySeller}
+                    modalData={verifySeller}
+                    buttonName='Verify'
+                >
+
+                </ConfirmationModal>
+            }
+            {
+                makeAdmin && <ConfirmationModal
+                    title={`Are you sure you want to make admin?`}
+                    closeModal={modalCancel}
+                    successAction={handleMakeAdmin}
+                    modalData={makeAdmin}
+                    buttonName='Yes'
+                >
+
+                </ConfirmationModal>
+            }
         </div>
     );
 };

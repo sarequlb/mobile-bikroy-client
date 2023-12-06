@@ -1,23 +1,22 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from 'react';
 
-const useSeller = email =>{
+const UseSeller = (email) => {
     const [isSeller, setIsSeller] = useState(false)
-    const [isSellerLoading,setIsSellerLoading] = useState()
+    const [isSellerLoading, setIsSellerLoading] = useState(true)
 
-    useEffect(() =>{
-        if(email){
+    useEffect(() => {
+        if (email) {
             fetch(`http://localhost:5000/allUsers/seller/${email}`)
-            .then(res => res.json())
-            .then(data=> {
-                setIsSeller(data.isSeller)
-                console.log(data.isSeller)
-                setIsSellerLoading(false)
-            })
+                .then(res => res.json())
+                .then(data => {
+                    setIsSeller(data.isSeller)
+                    console.log(data.isSeller)
+                    setIsSellerLoading(false)
+                })
         }
-    },[email])
+    }, [email])
 
     return [isSeller,isSellerLoading]
-}
+};
 
-
-export default useSeller;
+export default UseSeller;
