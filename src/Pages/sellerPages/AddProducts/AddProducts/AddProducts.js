@@ -4,11 +4,14 @@ import { useForm } from 'react-hook-form';
 import { useQuery } from 'react-query';
 import toast from 'react-hot-toast';
 import useVerify from '../../../../hooks/useVerify';
+import { useNavigate } from 'react-router-dom';
 
 const AddProducts = () => {
     const { user } = useContext(AuthContext)
     const date = new Date()
     // console.log(date)
+
+    const navigate = useNavigate()
 
     const { data: categories, isLoading } = useQuery({
         queryKey: ['categories'],
@@ -68,6 +71,7 @@ const AddProducts = () => {
                         console.log(data)
                         if(data.acknowledged){
                             toast.success('Successfully Posted')
+                            navigate('/dashboard/myProducts')
                         }
                     })
                 }

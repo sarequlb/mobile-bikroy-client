@@ -1,42 +1,34 @@
-import oppo from '../../../assets/oppo.2.jpg'
-import samsung from '../../../assets/samsung.3.jpg'
-import google from '../../../assets/google.1.jpg'
+import React from 'react';
+import ImageGallery from "react-image-gallery";
+import "react-image-gallery/styles/css/image-gallery.css";
 
 const MobileBanner = () => {
 
-    const MobileItems = [
+    const images = [
         {
-            id: 1,
-            image: oppo
+            original: 'https://www.ccsinsight.com/wp-content/uploads/2023/07/Mobile_phones_collection.png',
         },
         {
-            id: 2,
-            image: samsung
-
+            original: 'https://progressbangladesh.com/en/wp-content/uploads/sites/6/2019/08/buy-second-hand-mobile-e1566879912819.jpg',
         },
         {
-            id: 3,
-            image: google
+            original: 'https://www.paktales.com/wp-content/uploads/2019/10/featured-image-1.jpg',
         },
-
-    ]
+       
+    ];
 
 
     return (
         <div className='my-10'>
-            <div className="carousel w-full rounded">
-                {
-                    MobileItems.map(mobilItem =>
-                        <div key={mobilItem.id} id={`item${mobilItem.id}`} className="carousel-item w-full" >
-                            <img src={mobilItem.image} className="w-full" alt='' />
-                        </div>
-                    )
-                }
-            </div>
-            <div className="flex justify-center w-full py-2 gap-2">
-                <a href="#item1" className="btn btn-xs">1</a>
-                <a href="#item2" className="btn btn-xs">2</a>
-                <a href="#item3" className="btn btn-xs">3</a>
+            <div className=''>
+                <ImageGallery  showNav={true}
+                 showPlayButton={false} 
+                 autoPlay={true}
+                 showThumbnails={false}
+                showFullscreenButton={false}
+                slideInterval={2000}
+                items={images} />
+
             </div>
         </div >
     );
