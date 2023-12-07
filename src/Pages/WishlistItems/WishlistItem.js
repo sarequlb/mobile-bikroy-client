@@ -14,7 +14,7 @@ const WishlistItem = ({ wishlistData }) => {
     }
 
     const handleDelete = (id) => {
-        fetch(`http://localhost:5000/wishlist/${id}`, {
+        fetch(`https://mobile-bikroy-server.vercel.app/wishlist/${id}`, {
             method: 'DELETE',
             headers: {
 

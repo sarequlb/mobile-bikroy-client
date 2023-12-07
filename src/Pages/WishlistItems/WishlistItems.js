@@ -8,7 +8,7 @@ const WishlistItems = () => {
     const { data: wishlistData = [], refetch, isLoading } = useQuery({
         queryKey: 'wishlistData',
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/wishlist?email=${user?.email}`)
+            const res = await fetch(`https://mobile-bikroy-server.vercel.app/wishlist?email=${user?.email}`)
             const data = res.json()
             return data;
         }

@@ -16,7 +16,7 @@ const AddProducts = () => {
     const { data: categories, isLoading } = useQuery({
         queryKey: ['categories'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/categories')
+            const res = await fetch('https://mobile-bikroy-server.vercel.app/categories')
             const data = await res.json()
             return data;
         }
@@ -58,7 +58,7 @@ const AddProducts = () => {
                         verify:isVerify
                     }
                     //save post info to the db
-                    fetch('http://localhost:5000/allProducts',{
+                    fetch('https://mobile-bikroy-server.vercel.app/allProducts',{
                         method:'POST',
                         headers:{
                             'content-type': 'application/json'

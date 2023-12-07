@@ -9,7 +9,7 @@ const MyBookings = () => {
     const { data: bookings = [] } = useQuery({
         queryKey: 'booking',
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/booking?email=${user?.email}`)
+            const res = await fetch(`https://mobile-bikroy-server.vercel.app/booking?email=${user?.email}`)
             const data = res.json()
             return data
         }

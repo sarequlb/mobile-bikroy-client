@@ -21,7 +21,7 @@ const CategoryProductDetails = () => {
     const { data: sellerType = [], isLoading } = useQuery({
         queryKey: 'sellerType',
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/allUsers/${user?.email}`)
+            const res = await fetch(`https://mobile-bikroy-server.vercel.app/allUsers/${user?.email}`)
             const data = res.json()
             return data
         }
@@ -50,7 +50,7 @@ const CategoryProductDetails = () => {
 
         console.log(bookingInfo)
 
-        fetch('http://localhost:5000/booking', {
+        fetch('https://mobile-bikroy-server.vercel.app/booking', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -62,7 +62,7 @@ const CategoryProductDetails = () => {
                 console.log(data)
                 if (data.acknowledged) {
                     toast.success('Successfully Booked')
-                    fetch(`http://localhost:5000/allProducts/product/${id}`, {
+                    fetch(`https://mobile-bikroy-server.vercel.app/allProducts/product/${id}`, {
                         method: 'PUT',
                         headers: {
 
@@ -93,7 +93,7 @@ const CategoryProductDetails = () => {
             price,
 
         }
-        fetch('http://localhost:5000/wishlist', {
+        fetch('https://mobile-bikroy-server.vercel.app/wishlist', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

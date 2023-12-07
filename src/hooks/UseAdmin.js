@@ -6,7 +6,7 @@ const UseAdmin = (email) => {
 
     useEffect(() =>{
         if(email){
-            fetch(`http://localhost:5000/allUsers/admin/${email}`)
+            fetch(`https://mobile-bikroy-server.vercel.app/allUsers/admin/${email}`)
             .then(res => res.json())
             .then(data=> {
                 setIsAdmin(data.isAdmin)

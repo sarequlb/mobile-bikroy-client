@@ -17,7 +17,7 @@ const AllUsers = () => {
     const { data: allUsers = [], refetch, isLoading } = useQuery({
         queryKey: ['allUsers'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/allUsers')
+            const res = await fetch('https://mobile-bikroy-server.vercel.app/allUsers')
             const data = res.json()
             return data;
         }
@@ -53,7 +53,7 @@ const AllUsers = () => {
     //make admin
 
     const handleMakeAdmin = (id) => {
-        fetch(`http://localhost:5000/allUsers/${id}`, {
+        fetch(`https://mobile-bikroy-server.vercel.app/allUsers/${id}`, {
             method: 'PUT',
             headers: {
 
@@ -73,7 +73,7 @@ const AllUsers = () => {
 
     const handleDeleteUser = (id) => {
         console.log(id)
-        fetch(`http://localhost:5000/allUsers/${id}`, {
+        fetch(`https://mobile-bikroy-server.vercel.app/allUsers/${id}`, {
             method: 'DELETE',
             headers: {
 
@@ -93,7 +93,7 @@ const AllUsers = () => {
 
     const handleVerifySeller = (id) => {
         console.log(id)
-        fetch(`http://localhost:5000/allUsers/seller/${id}`, {
+        fetch(`https://mobile-bikroy-server.vercel.app/allUsers/seller/${id}`, {
             method: 'PUT',
             headers: {
 

@@ -6,7 +6,7 @@ const useVerify = (email) => {
 
     useEffect(() => {
         if (email) {
-            fetch(`http://localhost:5000/allUsers/user/${email}`)
+            fetch(`https://mobile-bikroy-server.vercel.app/allUsers/user/${email}`)
                 .then(res => res.json())
                 .then(data => {
                     setIisVerify(data.isVerify)

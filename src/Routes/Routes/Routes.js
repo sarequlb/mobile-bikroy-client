@@ -47,12 +47,12 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/allProducts/:category',
-                loader: ({params}) => fetch(`http://localhost:5000/allProducts/${params.category}`),
+                loader: ({params}) => fetch(`https://mobile-bikroy-server.vercel.app/allProducts/${params.category}`),
                 element: <PrivateRoute><CategoryProducts></CategoryProducts></PrivateRoute>
             },
             {
                 path: '/allProducts/product/:id',
-                loader: ({params}) => fetch(`http://localhost:5000/allProducts/product/${params.id}`),
+                loader: ({params}) => fetch(`https://mobile-bikroy-server.vercel.app/allProducts/product/${params.id}`),
                 element: <PrivateRoute><CategoryProductDetails></CategoryProductDetails></PrivateRoute>
             },
         ]
