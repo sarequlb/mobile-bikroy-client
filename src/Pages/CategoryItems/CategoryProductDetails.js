@@ -21,7 +21,7 @@ const CategoryProductDetails = () => {
     const { data: sellerType = [], isLoading } = useQuery({
         queryKey: 'sellerType',
         queryFn: async () => {
-            const res = await fetch(`https://mobile-bikroy-server.vercel.app/allUsers/${user?.email}`)
+            const res = await fetch(`https://mobile-bikroy-server.vercel.app/allUsers/${email}`)
             const data = res.json()
             return data
         }
@@ -160,10 +160,10 @@ const CategoryProductDetails = () => {
                 </div>
                 <div hidden={booked}>
                     {
-                        !isSeller && <>
+                        !isSeller && <div className='flex justify-center items-center'>
                             <label htmlFor="my_modal_6" className='btn mt-20 btn-primary'>Book Now</label>
-                            <button onClick={() => handleAddToWishlist(_id)} className='btn mt-20 mx-10'><GiSelfLove></GiSelfLove>Add to Wishlist</button>
-                        </>
+                            <button onClick={() => handleAddToWishlist(_id)} className='btn mt-20 mx-5'><GiSelfLove></GiSelfLove>Add to Wishlist</button>
+                        </div>
                     }
                 </div>
             </div>

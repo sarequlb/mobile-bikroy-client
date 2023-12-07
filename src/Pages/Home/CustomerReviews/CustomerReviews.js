@@ -15,12 +15,12 @@ const CustomerReviews = () => {
     const someReviews = someCustomerReviews.slice(0,3)
 
     if (isLoading) {
-        return <>
-            <span className="loading loading-ring loading-xs"></span>
-            <span className="loading loading-ring loading-sm"></span>
-            <span className="loading loading-ring loading-md"></span>
-            <span className="loading loading-ring loading-lg"></span>
-        </>
+        return <div className='flex justify-center items-center my-40'>
+        <span className="loading loading-bars loading-xs"></span>
+        <span className="loading loading-bars loading-sm"></span>
+        <span className="loading loading-bars loading-md"></span>
+        <span className="loading loading-bars loading-lg"></span>
+    </div>
     }
     return (
         <div className='my-32'>

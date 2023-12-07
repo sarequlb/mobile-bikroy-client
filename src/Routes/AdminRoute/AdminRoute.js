@@ -10,7 +10,7 @@ const AdminRoute = ({children}) => {
 
     const [isAdmin,isAdminLoading] = UseAdmin(user?.email)
     if(loader || isAdminLoading){
-        return <div className='mx-96 my-96'>
+        return <div className='mx-auto'>
         <span className="loading loading-bars loading-xs"></span>
         <span className="loading loading-bars loading-sm"></span>
         <span className="loading loading-bars loading-md"></span>

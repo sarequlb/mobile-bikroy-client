@@ -10,7 +10,7 @@ const SellerRoute = ({children}) => {
 
     const [isSeller,isSellerLoading] = UseSeller(user?.email)
     if(loader || isSellerLoading){
-        return <div className='mx-96 my-96'>
+        return <div className='mx-auto'>
         <span className="loading loading-bars loading-xs"></span>
         <span className="loading loading-bars loading-sm"></span>
         <span className="loading loading-bars loading-md"></span>
