@@ -40,7 +40,7 @@ const Navbar = () => {
 
         <li className='font-semibold'><Link to={'/'}>Home</Link></li>
         <li className='font-semibold'><Link to={'/about'}>About</Link></li>
-        <li className='font-semibold'><Link to={'/about'}>Blogs</Link></li>
+        <li className='font-semibold'><Link to={'/blogs'}>Blogs</Link></li>
         <li className='font-semibold'><Link to={'/dashboard'}>DashBoard</Link></li>
         <label className="cursor-pointer grid place-items-center mx-5">
             <input checked={theme === "light" ? false : true} onChange={handleToggle} type="checkbox" value="synthwave" className="toggle theme-controller bg-base-content row-start-1 col-start-1 col-span-2" />

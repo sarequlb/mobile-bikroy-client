@@ -33,11 +33,21 @@ const AllUsers = () => {
         setMakeAdmin(null)
     }
     if (isAdminLoading) {
-        <h1>loading.........</h1>
+        <div className='flex justify-center items-center my-40'>
+            <span className="loading loading-bars loading-xs"></span>
+            <span className="loading loading-bars loading-sm"></span>
+            <span className="loading loading-bars loading-md"></span>
+            <span className="loading loading-bars loading-lg"></span>
+        </div>
     }
 
     if (isLoading) {
-        <h1>loading..........</h1>
+        <div className='flex justify-center items-center my-40'>
+            <span className="loading loading-bars loading-xs"></span>
+            <span className="loading loading-bars loading-sm"></span>
+            <span className="loading loading-bars loading-md"></span>
+            <span className="loading loading-bars loading-lg"></span>
+        </div>
     }
 
     //make admin
@@ -127,7 +137,7 @@ const AllUsers = () => {
                                 }
                                 <label onClick={() => setDeletingUser(allUser._id)} htmlFor="confirmation-modal" className="btn btn-xs btn-error">Delete</label>
                                 {allUser?.verify !== true ?
-                                     <td><label disabled={allUser?.accountType === 'Buyer'}  onClick={() => setVerifySeller(allUser._id)} htmlFor="confirmation-modal" className="btn btn-xs btn-accent">Verify Seller</label></td>: <td><p className='font-bold'>verified</p></td>
+                                    <td><label disabled={allUser?.accountType === 'Buyer'} onClick={() => setVerifySeller(allUser._id)} htmlFor="confirmation-modal" className="btn btn-xs btn-accent">Verify Seller</label></td> : <td><p className='font-bold'>verified</p></td>
                                 }
 
                             </tr>)

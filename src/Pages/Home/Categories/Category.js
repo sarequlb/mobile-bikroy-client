@@ -9,7 +9,7 @@ const Category = ({ category }) => {
                 <figure><img src={image} alt="" /></figure>
                 <div className="card-body">
                     <h2 className="card-title">{category_name}</h2>
-                    <p>If a dog chews shoes whose shoes does he choose?</p>
+                    <p>Are you want to need this old mobile? click go button</p>
                     <div className="card-actions justify-end">
                         <Link to={`/allProducts/${category_name}`}><button className="btn btn-primary">GO</button></Link>
                     </div>

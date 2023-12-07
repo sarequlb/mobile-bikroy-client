@@ -25,17 +25,19 @@ const DashBoardLayout = () => {
                             isSeller ? <>
                                 <li className='font-semibold'><Link to={'/dashboard/addProducts'}>Add A product</Link></li>
                                 <li className='font-semibold'><Link to={'/dashboard/myProducts'}>My Products</Link></li>
-                                <li className='font-semibold'><Link to={''}>My buyers</Link></li>
-                            </>:<li className='font-semibold'><Link to={'/about'}>My Orders</Link></li>
+                                <li className='font-semibold'><Link to={'/dashboard/myBuyers'}>My buyers</Link></li>
+                            </> : <>
+                                <li className='font-semibold'><Link to={'/dashboard/myBooking'}>My Bookings</Link></li><li><Link to={'/dashboard/wishlists'}>Wishlists</Link></li>
+                            </>
                         }
                         {
                             isAdmin ? <>
                                 <li className='font-semibold'><Link to={'/dashboard/allUsers'}>All Users</Link></li>
-                                <li className='font-semibold'><Link to={'/dashboard/allUsers'}>Reported Items</Link></li>
-                            </>:<></>
+                                <li className='font-semibold'></li>
+                            </> : <></>
                         }
 
-                        
+
                     </ul>
 
                 </div>
